@@ -72,6 +72,7 @@ export default function Home() {
 
   const clearHistory = () => {
     setSearchHistory([]);
+    fetchCurrentGeo();
   };
 
   const formatCoordinates = (loc?: string) => {
