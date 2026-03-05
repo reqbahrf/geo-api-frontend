@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { AxiosInstance, AxiosResponse } from 'axios';
 import type { GeoData } from '../types/geo';
+import { authService } from './authService';
 
 const API_BASE_URL = 'http://localhost:8000';
 
@@ -62,11 +63,20 @@ class ApiService {
 
   // Geo API methods
   public async getCurrentGeo(): Promise<AxiosResponse<GeoData>> {
-    return this.get<GeoData>('api/geo');
+    return this.get<GeoData>('api/geo', {
+      headers: {
+        Authorization: `Bearer ${authService.getToken()}`,
+      },
+    });
   }
 
   public async getGeoByIP(ip: string): Promise<AxiosResponse<GeoData>> {
-    return this.get<GeoData>('api/geo', { ip });
+    return this.get<GeoData>('api/geo', {
+      ip,
+      headers: {
+        Authorization: `Bearer ${authService.getToken()}`,
+      },
+    });
   }
 }
 
