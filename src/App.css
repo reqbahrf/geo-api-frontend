@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #d4a411;
+  --color-background-light: #f8f8f6;
+  --color-background-dark: #221d10;
+  --font-display: 'Manrope', sans-serif;
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+}
