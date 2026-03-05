@@ -1,5 +1,6 @@
 import axios from 'axios';
 import type { AxiosInstance, AxiosResponse } from 'axios';
+import type { GeoData } from '../types/geo';
 
 const API_BASE_URL = 'http://localhost:8000';
 
@@ -59,15 +60,13 @@ class ApiService {
     return this.api.post(url, data);
   }
 
-  public put<T = unknown>(
-    url: string,
-    data?: Record<string, unknown>,
-  ): Promise<AxiosResponse<T>> {
-    return this.api.put(url, data);
+  // Geo API methods
+  public async getCurrentGeo(): Promise<AxiosResponse<GeoData>> {
+    return this.get<GeoData>('api/geo');
   }
 
-  public delete<T = unknown>(url: string): Promise<AxiosResponse<T>> {
-    return this.api.delete(url);
+  public async getGeoByIP(ip: string): Promise<AxiosResponse<GeoData>> {
+    return this.get<GeoData>('api/geo', { ip });
   }
 }
 
